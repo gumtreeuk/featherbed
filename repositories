@@ -1,0 +1,5 @@
+[repositories]
+  local
+  maven-proxy-releases: http://nexus.ci.gt.ecg.so/nexus/content/groups/public
+  bintray-ivy-releases: http://nexus.ci.gt.ecg.so/nexus3/repository/bintray-ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+  bintray-native-package: http://nexus.ci.gt.ecg.so/nexus3/repository/bintray-sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
