@@ -32,11 +32,11 @@ lazy val publishSettings = Seq(
   publishMavenStyle := true,
   publishArtifact := true,
   publishTo := {
-    val nexus = "http://nexus.ci.gt.ecg.so/nexus3/content/repositories/"
+    val nexus = "http://nexus.ci.gt.ecg.so/nexus/content/repositories/"
     if (isSnapshot.value)
-      Some("snapshots" at nexus + "maven-snaphosts")
+      Some("snapshots" at nexus + "snaphosts")
     else
-      Some("releases"  at nexus + "maven-releases")
+      Some("releases"  at nexus + "releases")
   },
   publishArtifact in Test := false,
   licenses := Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
