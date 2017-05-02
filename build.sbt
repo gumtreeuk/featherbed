@@ -67,7 +67,7 @@ lazy val noPublish = Seq(
 lazy val allSettings = publishSettings ++ baseSettings ++ buildSettings
 
 lazy val `featherbed-core` = project
-  .settings(allSettings ++ tutSettings)
+  .settings(allSettings)
 
 lazy val `featherbed-circe` = project
   .settings(allSettings)
@@ -75,16 +75,13 @@ lazy val `featherbed-circe` = project
 
 val scaladocVersionPath = settingKey[String]("Path to this version's ScalaDoc")
 val scaladocLatestPath = settingKey[String]("Path to latest ScalaDoc")
-val tutPath = settingKey[String]("Path to tutorials")
 
 lazy val docs: Project = project
     .settings(
       allSettings ++ ghpages.settings ++ Seq(
         scaladocVersionPath := ("api/" + version.value),
         scaladocLatestPath := (if (isSnapshot.value) "api/latest-snapshot" else "api/latest"),
-        tutPath := "doc",
         includeFilter in makeSite := (includeFilter in makeSite).value || "*.md" || "*.yml",
-        addMappingsToSiteDir(tut in `featherbed-core`, tutPath),
         addMappingsToSiteDir(mappings in (featherbed, ScalaUnidoc, packageDoc), scaladocLatestPath),
         addMappingsToSiteDir(mappings in (featherbed, ScalaUnidoc, packageDoc), scaladocVersionPath),
         ghpagesNoJekyll := false,
@@ -95,7 +92,7 @@ lazy val docs: Project = project
 
 lazy val featherbed = project
   .in(file("."))
-  .settings(unidocSettings ++ tutSettings ++ baseSettings ++ buildSettings)
+  .settings(unidocSettings ++ baseSettings ++ buildSettings)
   .aggregate(`featherbed-core`, `featherbed-circe`)
   .dependsOn(`featherbed-core`, `featherbed-circe`)
   .settings(
@@ -120,7 +117,6 @@ val validateCommands = List(
   "test:compile",
   "coverage",
   "test",
-  "tut",
   "coverageReport"
 )
 addCommandAlias("validate", validateCommands.mkString(";", ";", ""))
