@@ -34,7 +34,7 @@ lazy val publishSettings = Seq(
   publishTo := {
     val nexus = "http://nexus.ci.gt.ecg.so/nexus/content/repositories/"
     if (isSnapshot.value)
-      Some("snapshots" at nexus + "snaphosts")
+      Some("releases" at nexus + "releases")
     else
       Some("releases"  at nexus + "releases")
   },
